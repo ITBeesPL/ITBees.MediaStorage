@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ITBees.Fas.Setup" Version="8.0.7" />
+    <PackageReference Include="ITBees.Models" Version="8.0.63" />
+    <PackageReference Include="ITBees.RestfulApiControllers" Version="8.0.21" />
+    <PackageReference Include="ITBees.Translations" Version="8.0.83" />
+    <PackageReference Include="ITBees.UserManager" Version="8.0.184" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\Models\" />
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
+</Project>
