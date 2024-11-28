@@ -12,7 +12,7 @@
     <PackageReference Include="ITBees.Models" Version="8.0.64" />
     <PackageReference Include="ITBees.RestfulApiControllers" Version="8.0.21" />
     <PackageReference Include="ITBees.Translations" Version="8.0.87" />
-    <PackageReference Include="ITBees.UserManager" Version="8.0.189" />
+    <PackageReference Include="ITBees.UserManager" Version="8.0.190" />
   </ItemGroup>
 
   <ItemGroup>
