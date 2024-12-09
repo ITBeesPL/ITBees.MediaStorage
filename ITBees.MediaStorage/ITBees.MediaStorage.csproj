@@ -17,4 +17,8 @@
     <Folder Include="Setup\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ITBees.RestfulApiControllers" Version="8.0.21" />
+  </ItemGroup>
+
 </Project>
