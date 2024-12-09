@@ -8,11 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ITBees.Fas.Setup" Version="8.0.7" />
-    <PackageReference Include="ITBees.Models" Version="8.0.64" />
-    <PackageReference Include="ITBees.RestfulApiControllers" Version="8.0.21" />
-    <PackageReference Include="ITBees.Translations" Version="8.0.87" />
-    <PackageReference Include="ITBees.UserManager" Version="8.0.190" />
+    <Folder Include="Controllers\Models\" />
+    <Folder Include="Setup\" />
   </ItemGroup>
 
   <ItemGroup>
