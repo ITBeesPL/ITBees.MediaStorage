@@ -22,4 +22,9 @@
     <PackageReference Include="ITBees.UserManager" Version="8.0.201" />
   </ItemGroup>
 
+<!--  <ItemGroup>-->
+<!--    <ProjectReference Include="..\..\..\ITBees.RestfulApiControllers\ITBees.RestfulApiControllers\ITBees.RestfulApiControllers.csproj" />-->
+<!--    <ProjectReference Include="..\..\ITBees.UserManager\ITBees.UserManager\ITBees.UserManager.csproj" />-->
+<!--  </ItemGroup>-->
+  
 </Project>
