@@ -12,7 +12,7 @@ public class MediaStorageSetup
 {
     public static void Register<TContext, TIdentityUser>(IServiceCollection services,
         IConfigurationRoot configurationRoot) where TContext : DbContext
-        where TIdentityUser : IdentityUser
+        where TIdentityUser : IdentityUser<Guid>
     {
         services.AddScoped<IMediaService, MediaService>();
     }
