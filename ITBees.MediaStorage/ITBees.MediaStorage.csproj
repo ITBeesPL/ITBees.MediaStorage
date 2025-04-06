@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="ITBees.RestfulApiControllers" Version="8.0.22" />
-    <PackageReference Include="ITBees.UserManager" Version="8.0.298" />
+    <PackageReference Include="ITBees.UserManager" Version="8.0.299" />
   </ItemGroup>
 
 <!--  <ItemGroup>-->
