@@ -24,7 +24,7 @@
 
 <!--  <ItemGroup>-->
 <!--    <ProjectReference Include="..\..\..\ITBees.RestfulApiControllers\ITBees.RestfulApiControllers\ITBees.RestfulApiControllers.csproj" />-->
-<!--    <ProjectReference Include="..\..\ITBees.UserManager\ITBees.UserManager\ITBees.UserManager.csproj" />-->
+<!--    <ProjectReference Include="..\..\..\ITBees.UserManager\ITBees.UserManager\ITBees.UserManager.csproj" />-->
 <!--  </ItemGroup>-->
   
 </Project>
