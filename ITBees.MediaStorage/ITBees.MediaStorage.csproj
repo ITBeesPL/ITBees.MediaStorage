@@ -18,9 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ITBees.Models" Version="8.0.83" />
-    <PackageReference Include="ITBees.RestfulApiControllers" Version="8.0.22" />
-    <PackageReference Include="ITBees.UserManager" Version="8.0.301" />
+    <PackageReference Include="ITBees.Models" Version="8.0.85" />
+    <PackageReference Include="ITBees.RestfulApiControllers" Version="8.0.24" />
+    <PackageReference Include="ITBees.UserManager" Version="8.0.303" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
   </ItemGroup>
 
