@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ITBees.FAS.ApiInterfaces" Version="8.0.56" />
+    <PackageReference Include="ITBees.FAS.ApiInterfaces" Version="8.0.57" />
     <PackageReference Include="ITBees.Interfaces" Version="8.0.64" />
     <PackageReference Include="ITBees.Models" Version="8.0.91" />
     <PackageReference Include="ITBees.RestfulApiControllers" Version="8.0.25" />
