@@ -36,8 +36,11 @@ namespace ITBees.MediaStorage.Services
 
         public async Task<UploadFileResultVm> UploadFile(IFormFile file, bool publicVisible, Guid? companyGuid)
         {
-            MediaFile mediaFile = null;
-            
+            return await UploadFile<MediaFile>(file, publicVisible, companyGuid, null);
+        }
+
+        public async Task<UploadFileResultVm> UploadFile<T>(IFormFile file, bool publicVisible, Guid? companyGuid, T mediaFile) where T : MediaFile, new()
+        {
             try
             {
                 var cu = _aspCurrentUserService.GetCurrentUserGuid();
@@ -52,22 +55,40 @@ namespace ITBees.MediaStorage.Services
                 var fileExtension = GetFileExtension(file.FileName);
                 var targetFileName = $"{guid}.{fileExtension}";
                 var filePath = Path.Combine(targetFolderPath, targetFileName);
-
-                mediaFile = new MediaFile()
+                if (mediaFile == null)
                 {
-                    CompanyGuid = companyGuid,
-                    Created = DateTime.Now,
-                    CreatedByGuid = cu ?? Guid.Empty,
-                    FileExtension = fileExtension,
-                    OriginalFileName = file.FileName,
-                    FileName = targetFileName,
-                    FilePath = filePath,
-                    FileSize = file.Length,
-                    Guid = guid,
-                    IsActive = true,
-                    PublicVisible = publicVisible,
-                    Type = ""
-                };
+                    mediaFile = new T()
+                    {
+                        CompanyGuid = companyGuid,
+                        Created = DateTime.Now,
+                        CreatedByGuid = cu ?? Guid.Empty,
+                        FileExtension = fileExtension,
+                        OriginalFileName = file.FileName,
+                        FileName = targetFileName,
+                        FilePath = filePath,
+                        FileSize = file.Length,
+                        Guid = guid,
+                        IsActive = true,
+                        PublicVisible = publicVisible,
+                        Type = ""
+                    };    
+                }
+                else
+                {
+                    mediaFile.CompanyGuid = companyGuid;
+                    mediaFile.Created = DateTime.Now;
+                    mediaFile.CreatedByGuid = cu ?? Guid.Empty;
+                    mediaFile.FileExtension = fileExtension;
+                    mediaFile.OriginalFileName = file.FileName;
+                    mediaFile.FileName = targetFileName;
+                    mediaFile.FilePath = filePath;
+                    mediaFile.FileSize = file.Length;
+                    mediaFile.Guid = guid;
+                    mediaFile.IsActive = true;
+                    mediaFile.PublicVisible = publicVisible;
+                    mediaFile.Type = "";
+                }
+                
                 var newMediaFile = _mediaFileRwRepo.InsertData(mediaFile);
 
                 if (new FileInfo(newMediaFile.FilePath).Exists)
