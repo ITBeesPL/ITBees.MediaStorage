@@ -36,6 +36,8 @@ namespace ITBees.MediaStorage.Services
 
         public async Task<UploadFileResultVm> UploadFile(IFormFile file, bool publicVisible, Guid? companyGuid)
         {
+            MediaFile mediaFile = null;
+            
             try
             {
                 var cu = _aspCurrentUserService.GetCurrentUserGuid();
@@ -51,7 +53,7 @@ namespace ITBees.MediaStorage.Services
                 var targetFileName = $"{guid}.{fileExtension}";
                 var filePath = Path.Combine(targetFolderPath, targetFileName);
 
-                var newMediaFile = _mediaFileRwRepo.InsertData(new MediaFile()
+                mediaFile = new MediaFile()
                 {
                     CompanyGuid = companyGuid,
                     Created = DateTime.Now,
@@ -65,7 +67,8 @@ namespace ITBees.MediaStorage.Services
                     IsActive = true,
                     PublicVisible = publicVisible,
                     Type = ""
-                });
+                };
+                var newMediaFile = _mediaFileRwRepo.InsertData(mediaFile);
 
                 if (new FileInfo(newMediaFile.FilePath).Exists)
                     throw new FasApiErrorException(new FasApiErrorVm("File with this name already exists", 400, ""));
@@ -97,6 +100,7 @@ namespace ITBees.MediaStorage.Services
             catch (Exception e)
             {
                 _logger.LogError(e, e.Message);
+                _logger.LogError("Serialized error: {SerializedError}", System.Text.Json.JsonSerializer.Serialize(mediaFile));
                 throw;
             }
         }
