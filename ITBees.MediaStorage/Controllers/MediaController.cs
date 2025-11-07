@@ -36,7 +36,7 @@ public class MediaController : RestfulControllerBase<MediaController>
         }
         catch (Exception e)
         {
-            _logger.LogError(e.Message, e);
+            _logger.LogError("Media controller error : " + e.Message, e);
             return CreateBaseErrorResponse(e.Message, new { imageName });
         }
     }

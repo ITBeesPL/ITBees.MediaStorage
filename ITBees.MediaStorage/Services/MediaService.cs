@@ -120,7 +120,7 @@ namespace ITBees.MediaStorage.Services
             }
             catch (Exception e)
             {
-                _logger.LogError(e, e.Message);
+                _logger.LogError("Media service error : " + e.Message, e);
                 _logger.LogError("Serialized error: {SerializedError}", System.Text.Json.JsonSerializer.Serialize(mediaFile));
                 throw;
             }
