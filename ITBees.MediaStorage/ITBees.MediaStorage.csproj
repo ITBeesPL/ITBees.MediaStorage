@@ -22,7 +22,7 @@
     <PackageReference Include="ITBees.Interfaces" Version="8.0.67" />
     <PackageReference Include="ITBees.Models" Version="8.0.94" />
     <PackageReference Include="ITBees.RestfulApiControllers" Version="8.0.26" />
-    <PackageReference Include="ITBees.UserManager" Version="8.0.357" />
+    <PackageReference Include="ITBees.UserManager" Version="8.0.358" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
   </ItemGroup>
 
