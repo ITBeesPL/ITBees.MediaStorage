@@ -222,14 +222,18 @@ namespace ITBees.MediaStorage.Services
         {
             try
             {
-                var fileGuid = fullImageUrlPath.Split("/media?imageName=").Last().Split(".").First();
+                var fileGuidString = fullImageUrlPath.Split("/media?imageName=").Last().Split(".").First();
+                if (!Guid.TryParse(fileGuidString, out var fileGuid))
+                {
+                    throw new FasApiErrorException(new FasApiErrorVm("File not exists", 404, ""));
+                }
 
-                var fileMeta = _mediaFileRoRepo.GetData(x => x.Guid == new Guid(fileGuid)).FirstOrDefault() ??
+                var fileMeta = _mediaFileRoRepo.GetData(x => x.Guid == fileGuid).FirstOrDefault() ??
                                throw new FasApiErrorException(new FasApiErrorVm("File not exists", 404, ""));
 
                 if (noCheckingPermissions)
                 {
-                    _mediaFileRwRepo.DeleteData(x => x.Guid == new Guid(fileGuid));
+                    _mediaFileRwRepo.DeleteData(x => x.Guid == fileGuid);
                     File.Delete(fileMeta.FilePath);
                 }
                 else
@@ -246,9 +250,19 @@ namespace ITBees.MediaStorage.Services
 
         public async Task<string> ResolveFilePath(string? resourceName, string? expectedFormat)
         {
-            var fileGuid = resourceName.Split(".").First();
+            if (string.IsNullOrWhiteSpace(resourceName))
+            {
+                throw new FasApiErrorException(new FasApiErrorVm("File not exists", 404, ""));
+            }
+
+            var fileGuidString = resourceName.Split(".").First();
+            if (!Guid.TryParse(fileGuidString, out var fileGuidParsed))
+            {
+                throw new FasApiErrorException(new FasApiErrorVm("File not exists", 404, ""));
+            }
+
             var currentUserGuid = _aspCurrentUserService.GetCurrentUserGuid();
-            var mediaFile = _mediaFileRoRepo.GetData(x => x.Guid == Guid.Parse(fileGuid)).FirstOrDefault();
+            var mediaFile = _mediaFileRoRepo.GetData(x => x.Guid == fileGuidParsed).FirstOrDefault();
 
             if (mediaFile == null)
             {
