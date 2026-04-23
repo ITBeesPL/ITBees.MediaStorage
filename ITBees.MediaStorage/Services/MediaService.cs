@@ -225,11 +225,11 @@ namespace ITBees.MediaStorage.Services
                 var fileGuidString = fullImageUrlPath.Split("/media?imageName=").Last().Split(".").First();
                 if (!Guid.TryParse(fileGuidString, out var fileGuid))
                 {
-                    throw new FasApiErrorException(new FasApiErrorVm("File not exists", 404, ""));
+                    throw new FasApiErrorException(new FasApiErrorVm($"File not exists: invalid guid in path '{fullImageUrlPath}'", 404, ""));
                 }
 
                 var fileMeta = _mediaFileRoRepo.GetData(x => x.Guid == fileGuid).FirstOrDefault() ??
-                               throw new FasApiErrorException(new FasApiErrorVm("File not exists", 404, ""));
+                               throw new FasApiErrorException(new FasApiErrorVm($"File not exists: {fileGuidString}", 404, ""));
 
                 if (noCheckingPermissions)
                 {
@@ -252,13 +252,13 @@ namespace ITBees.MediaStorage.Services
         {
             if (string.IsNullOrWhiteSpace(resourceName))
             {
-                throw new FasApiErrorException(new FasApiErrorVm("File not exists", 404, ""));
+                throw new FasApiErrorException(new FasApiErrorVm("File not exists: (empty resource name)", 404, ""));
             }
 
             var fileGuidString = resourceName.Split(".").First();
             if (!Guid.TryParse(fileGuidString, out var fileGuidParsed))
             {
-                throw new FasApiErrorException(new FasApiErrorVm("File not exists", 404, ""));
+                throw new FasApiErrorException(new FasApiErrorVm($"File not exists: invalid guid '{resourceName}'", 404, ""));
             }
 
             var currentUserGuid = _aspCurrentUserService.GetCurrentUserGuid();
@@ -266,7 +266,7 @@ namespace ITBees.MediaStorage.Services
 
             if (mediaFile == null)
             {
-                throw new FasApiErrorException(new FasApiErrorVm("File not exists", 404, ""));
+                throw new FasApiErrorException(new FasApiErrorVm($"File not exists: {resourceName}", 404, ""));
             }
 
             if (mediaFile is { PublicVisible: true, IsActive: true })
@@ -281,7 +281,7 @@ namespace ITBees.MediaStorage.Services
 
             if (mediaFile.IsActive == false)
             {
-                throw new FasApiErrorException(new FasApiErrorVm("File not exists", 404, ""));
+                throw new FasApiErrorException(new FasApiErrorVm($"File not exists: {resourceName} (inactive)", 404, ""));
             }
 
             if (mediaFile.PublicVisible == false && currentUserGuid == null)
