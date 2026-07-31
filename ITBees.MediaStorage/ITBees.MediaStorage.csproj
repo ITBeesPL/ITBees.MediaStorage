@@ -24,6 +24,7 @@
     <PackageReference Include="ITBees.RestfulApiControllers" Version="8.0.31" />
     <PackageReference Include="ITBees.UserManager" Version="8.0.397" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 <!--  <ItemGroup>-->
